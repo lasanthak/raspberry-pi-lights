@@ -49,11 +49,17 @@ class PatternAlgorithm:
 
         return unpack_bits(self.prev_pattern_int)
 
+    @staticmethod
+    def inverse_initial_state():
+        return unpack_bits(PatternAlgorithm.INVERSE_INITIAL_STATE)
+
     # Loop count per pattern
     _LOOP_COUNT_PER_PATTERN = 4
 
     # Initial state of the pins
     INITIAL_STATE_PATTERN = [pack_bits([0, 0, 0, 0, 0, 0, 0, 0])]
+    # Inverse of initial state
+    INVERSE_INITIAL_STATE = pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
 
     # Knight Rider
     KNIGHT_RIDER = [
