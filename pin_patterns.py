@@ -16,12 +16,14 @@ class PatternAlgorithm:
         self.cur_pattern_loops_remaining = PatternAlgorithm._LOOP_COUNT_PER_PATTERN
         self.patterns = []
         # Organize patterns
+        # -----------------------------------------------------------
         self.patterns.append(PatternAlgorithm.INITIAL_STATE_PATTERN)
         self.patterns.append(PatternAlgorithm.KNIGHT_RIDER)
         self.patterns.append(PatternAlgorithm.KNIGHT_RIDER_TWO)
         self.patterns.append(PatternAlgorithm.KNIGHT_RIDER_SPLIT_MIDDLE)
         self.patterns.append(PatternAlgorithm.INVERTED_KNIGHT_RIDER)
         self.patterns.append(PatternAlgorithm.PROGRESS_3)
+        # -----------------------------------------------------------
 
     def _next_pattern_int(self):
         self.cur_pos_in_pattern += 1
