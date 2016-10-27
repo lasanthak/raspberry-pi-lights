@@ -26,6 +26,11 @@ if len(sys.argv) > 1:
         for p in pins:
             p.value = False
         exit()
+    elif "test" == sys.argv[1].lower():
+        for p in pins:
+            p.value = True
+            sleep(3)
+        exit()
 # ------------------------------------
 
 pattern_algorithm = PatternAlgorithm(10)
