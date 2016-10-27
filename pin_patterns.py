@@ -2,59 +2,59 @@ from bit_packing import pack_bits, unpack_bits
 
 
 class PinPattern8:
-    def __init__(self, state_ints_array):
+    def __init__(self, state_ints_array, loop_count):
+        self.loop_count = loop_count
         self.states = []
         for state_int in state_ints_array:
             self.states.append(state_int)
 
 
 class PatternAlgorithm:
-    def __init__(self):
+    def __init__(self, loop_count):
         self.prev_pattern_int = None
-        self.cur_pattern_id = 0
+        self.cur_pattern = None
+        self.cur_pattern_id = -1
         self.cur_pos_in_pattern = -1
-        self.cur_pattern_loops_remaining = PatternAlgorithm._LOOP_COUNT_PER_PATTERN
+        self.cur_pattern_loops_remaining = 0
         self.patterns = []
         # Organize patterns
         # -----------------------------------------------------------
-        self.patterns.append(PatternAlgorithm.INITIAL_STATE_PATTERN)
-        self.patterns.append(PatternAlgorithm.KNIGHT_RIDER)
-        self.patterns.append(PatternAlgorithm.KNIGHT_RIDER_TWO)
-        self.patterns.append(PatternAlgorithm.KNIGHT_RIDER_SPLIT_MIDDLE)
-        self.patterns.append(PatternAlgorithm.INVERTED_KNIGHT_RIDER)
-        self.patterns.append(PatternAlgorithm.PROGRESS_3)
+        self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_TWO, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_SPLIT_MIDDLE, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.INVERTED_KNIGHT_RIDER, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.PROGRESS_3, 2*loop_count))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
-        self.cur_pos_in_pattern += 1
-
-        if self.cur_pos_in_pattern >= len(self.patterns[self.cur_pattern_id]):
-            self.cur_pos_in_pattern = 0
-            self.cur_pattern_loops_remaining -= 1
+        if self.cur_pattern_loops_remaining > 0:
+            self.cur_pos_in_pattern += 1
+            if self.cur_pos_in_pattern >= len(self.cur_pattern.states):
+                self.cur_pos_in_pattern = 0
+                self.cur_pattern_loops_remaining -= 1
 
         if self.cur_pattern_loops_remaining <= 0:
-            self.cur_pattern_id = (self.cur_pattern_id + 1) % len(self.patterns)
             self.cur_pos_in_pattern = 0
-            self.cur_pattern_loops_remaining = PatternAlgorithm._LOOP_COUNT_PER_PATTERN
+            self.cur_pattern_id = (self.cur_pattern_id + 1) % len(self.patterns)
+            self.cur_pattern = self.patterns[self.cur_pattern_id]
+            self.cur_pattern_loops_remaining = self.cur_pattern.loop_count
 
-        return self.patterns[self.cur_pattern_id][self.cur_pos_in_pattern]
+        return self.cur_pattern.states[self.cur_pos_in_pattern]
 
     def next(self):
-        pattern_int = self._next_pattern_int()
-        if pattern_int == self.prev_pattern_int:
+        new_pattern_int = self._next_pattern_int()
+        if new_pattern_int == self.prev_pattern_int:
             # Skip one step if consecutive patterns are the same
             self.prev_pattern_int = self._next_pattern_int()
         else:
-            self.prev_pattern_int = pattern_int
+            self.prev_pattern_int = new_pattern_int
 
         return unpack_bits(self.prev_pattern_int)
 
     @staticmethod
     def inverse_initial_state():
         return unpack_bits(PatternAlgorithm.INVERSE_INITIAL_STATE)
-
-    # Loop count per pattern
-    _LOOP_COUNT_PER_PATTERN = 4
 
     # Initial state of the pins
     INITIAL_STATE_PATTERN = [pack_bits([0, 0, 0, 0, 0, 0, 0, 0])]

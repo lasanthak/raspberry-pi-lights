@@ -17,7 +17,7 @@ pattern_algorithm = PatternAlgorithm()
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 
-sleep_time = 0.3  # in seconds
+sleep_time = 0.07  # in seconds
 
 while True:
     new_state = pattern_algorithm.next()
@@ -25,4 +25,6 @@ while True:
     for idx, new_pin_value in enumerate(new_state):
         if cur_state[idx] != new_pin_value:
             pins[idx].value = (new_pin_value == 1)
+
+    cur_state = new_state
     sleep(sleep_time)
