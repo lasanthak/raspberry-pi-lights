@@ -20,9 +20,11 @@ if len(sys.argv) > 1:
     if "on" == sys.argv[1].lower():
         for p in pins:
             p.value = True
+        exit()
     elif "off" == sys.argv[1].lower():
         for p in pins:
             p.value = False
+        exit()
 # ------------------------------------
 
 pattern_algorithm = PatternAlgorithm(10)
