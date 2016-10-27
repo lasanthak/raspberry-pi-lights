@@ -13,7 +13,7 @@ pins = [
     OutputDevice(pin=24, active_high=False)
 ]
 
-pattern_algorithm = PatternAlgorithm()
+pattern_algorithm = PatternAlgorithm(10)
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 

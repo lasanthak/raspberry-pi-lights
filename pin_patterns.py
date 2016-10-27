@@ -24,7 +24,7 @@ class PatternAlgorithm:
         self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_TWO, loop_count))
         self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_SPLIT_MIDDLE, loop_count))
         self.patterns.append(PinPattern8(PatternAlgorithm.INVERTED_KNIGHT_RIDER, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.PROGRESS_3, 2*loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.PROGRESS_3, int(1.5*loop_count)))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
