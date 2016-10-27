@@ -20,6 +20,7 @@ if len(sys.argv) > 1:
     if "on" == sys.argv[1].lower():
         for p in pins:
             p.value = True
+        sleep(30)
         exit()
     elif "off" == sys.argv[1].lower():
         for p in pins:
