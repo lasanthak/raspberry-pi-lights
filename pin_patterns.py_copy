@@ -20,9 +20,11 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.IKR_RAND, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_TWO, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KNIGHT_RIDER_SPLIT_MIDDLE, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.INVERTED_KNIGHT_RIDER, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.PROGRESS_3, int(1.5*loop_count)))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
@@ -41,7 +43,13 @@ class PatternAlgorithm:
         return self.cur_pattern.states[self.cur_pos_in_pattern]
 
     def next(self):
-        self.prev_pattern_int = self._next_pattern_int()
+        new_pattern_int = self._next_pattern_int()
+        if new_pattern_int == self.prev_pattern_int:
+            # Skip one step if consecutive patterns are the same
+            self.prev_pattern_int = self._next_pattern_int()
+        else:
+            self.prev_pattern_int = new_pattern_int
+
         return unpack_bits(self.prev_pattern_int)
 
     @staticmethod
@@ -53,59 +61,28 @@ class PatternAlgorithm:
     # Inverse of initial state
     INVERSE_INITIAL_STATE = pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
 
-    # Knight Riders - Knight Riders
+    # 2 Knight Riders
     KR_KR = [
-        pack_bits([1, 0, 0, 0, 0, 0, 0, 1]),
-        pack_bits([1, 0, 0, 0, 0, 0, 0, 1]),
-        pack_bits([0, 1, 0, 0, 0, 0, 1, 0]),
-        pack_bits([0, 1, 0, 0, 0, 0, 1, 0]),
-        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
-        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
-        pack_bits([0, 0, 0, 1, 1, 0, 0, 0]),
-        pack_bits([0, 0, 0, 1, 1, 0, 0, 0]),
-        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
-        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
-        pack_bits([0, 1, 0, 0, 0, 0, 1, 0]),
-        pack_bits([0, 1, 0, 0, 0, 0, 1, 0])
+        pack_bits([1, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 1, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 1, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 1, 0, 0, 0, 0]),
+        pack_bits([0, 0, 1, 0, 0, 0, 0, 0]),
+        pack_bits([0, 1, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 0, 0, 0, 0, 0, 0, 0])
+
+        # pack_bits([0, 0, 0, 0, 1, 0, 0, 0]),
+        # pack_bits([0, 0, 0, 0, 0, 1, 0, 0]),
+        # pack_bits([0, 0, 0, 0, 0, 0, 1, 0]),
+        # pack_bits([0, 0, 0, 0, 0, 0, 0, 1]),
+        # pack_bits([0, 0, 0, 0, 0, 0, 1, 0]),
+        # pack_bits([0, 0, 0, 0, 0, 1, 0, 0]),
+        # pack_bits([0, 0, 0, 0, 1, 0, 0, 0]),
+        # pack_bits([0, 0, 0, 1, 0, 0, 0, 0]),
+        # pack_bits([0, 0, 1, 0, 0, 0, 0, 0]),
+        # pack_bits([0, 1, 0, 0, 0, 0, 0, 0]),
+        # pack_bits([1, 0, 0, 0, 0, 0, 0, 0])
     ]
-
-    # Inverse Knight Riders - Random
-    IKR_RAND = [
-        pack_bits([0, 1, 1, 1, 1, 0, 0, 0]),
-        pack_bits([0, 1, 1, 1, 0, 0, 1, 0]),
-        pack_bits([1, 0, 1, 1, 0, 0, 0, 1]),
-        pack_bits([1, 0, 1, 1, 0, 1, 0, 0]),
-        pack_bits([1, 1, 0, 1, 0, 0, 1, 0]),
-        pack_bits([1, 1, 0, 1, 1, 0, 0, 0]),
-        pack_bits([1, 1, 1, 0, 0, 0, 0, 1]),
-        pack_bits([1, 1, 1, 0, 1, 0, 0, 0]),
-        pack_bits([1, 1, 0, 1, 0, 1, 0, 0]),
-        pack_bits([1, 1, 0, 1, 0, 0, 0, 1]),
-        pack_bits([1, 0, 1, 1, 0, 0, 1, 0]),
-        pack_bits([1, 0, 1, 1, 0, 1, 0, 0])
-    ]
-
-    # Chain - Swipe
-    CH_SW = [
-        pack_bits([1, 0, 0, 0, 1, 1, 0, 1]),
-        pack_bits([1, 0, 0, 0, 1, 0, 1, 1]),
-        pack_bits([0, 1, 0, 0, 1, 1, 0, 1]),
-        pack_bits([0, 1, 0, 0, 1, 0, 0, 1]),
-        pack_bits([0, 0, 1, 0, 1, 1, 0, 1]),
-        pack_bits([0, 0, 1, 0, 1, 0, 1, 1]),
-        pack_bits([0, 0, 0, 1, 1, 1, 0, 1]),
-        pack_bits([0, 0, 0, 1, 1, 0, 0, 1]),
-        pack_bits([1, 0, 0, 0, 1, 1, 1, 0]),
-        pack_bits([1, 0, 0, 0, 0, 1, 1, 1]),
-        pack_bits([0, 1, 0, 0, 1, 1, 1, 0]),
-        pack_bits([0, 1, 0, 0, 0, 1, 1, 1]),
-        pack_bits([0, 0, 1, 0, 1, 1, 1, 0]),
-        pack_bits([0, 0, 1, 0, 0, 1, 1, 1]),
-        pack_bits([0, 0, 0, 1, 1, 1, 1, 0]),
-        pack_bits([0, 0, 0, 1, 0, 1, 1, 1])
-    ]
-
-
 '''
     # Knight Rider
     KNIGHT_RIDER = [
