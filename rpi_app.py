@@ -36,7 +36,7 @@ if len(sys.argv) > 1:
         exit()
 # ------------------------------------
 
-pattern_algorithm = PatternAlgorithm(16)
+pattern_algorithm = PatternAlgorithm(18)
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 
