@@ -36,11 +36,11 @@ if len(sys.argv) > 1:
         exit()
 # ------------------------------------
 
-pattern_algorithm = PatternAlgorithm(10)
+pattern_algorithm = PatternAlgorithm(16)
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 
-sleep_time = 0.07  # in seconds
+sleep_time = 0.08  # in seconds
 
 while True:
     new_state = pattern_algorithm.next()
