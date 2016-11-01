@@ -20,6 +20,7 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON, int(0.5 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, int(0.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.FKR_IKR, loop_count))
         self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, int(0.85 * loop_count)))
@@ -59,18 +60,15 @@ class PatternAlgorithm:
     # Inverse of initial state
     INVERSE_INITIAL_STATE = pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
 
+    # All On
+    ON = [
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
+    ]
+
     # On - Off
     ON_OFF = [
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
-        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
-        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
-        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
-        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
-        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
-        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
-        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
-        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
@@ -80,6 +78,32 @@ class PatternAlgorithm:
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0])
     ]
 

@@ -10,7 +10,7 @@ class RPApp(App):
     def __init__(self, **kwargs):
         super(RPApp, self).__init__(**kwargs)
         self.widget = Widget()
-        self.pattern_algorithm = PatternAlgorithm(loop_count=4)
+        self.pattern_algorithm = PatternAlgorithm(loop_count=18)
 
     def build(self):
         Clock.schedule_interval(self.setpinsauto, 0.1)
