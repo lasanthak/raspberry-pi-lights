@@ -25,8 +25,8 @@ class PatternAlgorithm:
         self.patterns.append(PinPattern8(PatternAlgorithm.RAND_ON, int(1.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, int(1.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.IKR_RAND, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.FKR, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON_PR, 2 * loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.FKR, int(0.7 * loop_count)))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_PR, int(1.5 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.KR, int(0.7 * loop_count)))
         # -----------------------------------------------------------
 
