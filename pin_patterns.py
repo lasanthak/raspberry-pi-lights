@@ -20,8 +20,9 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, int(0.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.FKR_IKR, loop_count))
-        self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, loop_count))
+        self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, int(0.85 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.RAND_ON, int(1.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, int(1.3 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.IKR_RAND, loop_count))
@@ -57,6 +58,14 @@ class PatternAlgorithm:
     INITIAL_STATE_PATTERN = [pack_bits([0, 0, 0, 0, 0, 0, 0, 0])]
     # Inverse of initial state
     INVERSE_INITIAL_STATE = pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
+
+    # On - Off
+    ON_OFF = [
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0])
+    ]
 
     # Knight Riders - Knight Riders
     KR_KR = [
