@@ -30,6 +30,7 @@ class PatternAlgorithm:
         self.patterns.append(PinPattern8(PatternAlgorithm.FKR, int(0.7 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_PR, int(1.5 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.KR, int(0.7 * loop_count)))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR2, int(1.2 * loop_count)))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
@@ -189,6 +190,16 @@ class PatternAlgorithm:
         pack_bits([0, 0, 0, 1, 0, 0, 0, 0]),
         pack_bits([0, 0, 1, 0, 0, 0, 0, 0]),
         pack_bits([0, 1, 0, 0, 0, 0, 0, 0])
+    ]
+
+    # Knight Riders, Two ways
+    KR2 = [
+        pack_bits([1, 0, 0, 0, 0, 0, 0, 1]),
+        pack_bits([0, 1, 0, 0, 0, 0, 1, 0]),
+        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
+        pack_bits([0, 0, 0, 1, 1, 0, 0, 0]),
+        pack_bits([0, 0, 1, 0, 0, 1, 0, 0]),
+        pack_bits([0, 1, 0, 0, 0, 0, 1, 0])
     ]
 
     # Fully On - Progress
