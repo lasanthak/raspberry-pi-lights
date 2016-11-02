@@ -20,7 +20,7 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON, 10))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON, 30))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, 1))
         self.patterns.append(PinPattern8(PatternAlgorithm.FKR_IKR, loop_count))
         self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, int(0.85 * loop_count)))
@@ -94,6 +94,20 @@ class PatternAlgorithm:
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
+        pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1]),
         pack_bits([0, 0, 0, 0, 0, 0, 0, 0]),
