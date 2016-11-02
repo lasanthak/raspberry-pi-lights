@@ -20,8 +20,8 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON, int(0.5 * loop_count)))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, int(0.3 * loop_count)))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON, 10))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, 1))
         self.patterns.append(PinPattern8(PatternAlgorithm.FKR_IKR, loop_count))
         self.patterns.append(PinPattern8(PatternAlgorithm.CH_SW, int(0.85 * loop_count)))
         self.patterns.append(PinPattern8(PatternAlgorithm.RAND_ON, int(1.3 * loop_count)))
