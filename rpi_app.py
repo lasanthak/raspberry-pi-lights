@@ -40,7 +40,7 @@ pattern_algorithm = PatternAlgorithm(18)
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 
-sleep_time = 0.08  # in seconds
+sleep_time = 0.085  # in seconds
 
 while True:
     new_state = pattern_algorithm.next()
