@@ -20,15 +20,22 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 20))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 12))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON, 20))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.KR, 6))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR, 5))
         self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, 8))
         self.patterns.append(PinPattern8(PatternAlgorithm.FLIP_FLOP, 6))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 20))
         self.patterns.append(PinPattern8(PatternAlgorithm.LASER_X, 16))
         self.patterns.append(PinPattern8(PatternAlgorithm.LASER, 14))
+        self.patterns.append(PinPattern8(PatternAlgorithm.OFF, 8))
+        self.patterns.append(PinPattern8(PatternAlgorithm.FLIP_FLOP, 6))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, 8))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR, 5))
+        self.patterns.append(PinPattern8(PatternAlgorithm.LASER_X, 16))
+        self.patterns.append(PinPattern8(PatternAlgorithm.LASER, 14))
+        self.patterns.append(PinPattern8(PatternAlgorithm.OFF, 8))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
@@ -71,6 +78,11 @@ class PatternAlgorithm:
     # All On
     ON = [
         pack_bits([1, 1, 1, 1, 1, 1, 1, 1])
+    ]
+
+    # All Off
+    OFF = [
+        pack_bits([0, 0, 0, 0, 0, 0, 0, 0])
     ]
 
     # On - Off
