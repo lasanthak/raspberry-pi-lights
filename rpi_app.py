@@ -1,7 +1,7 @@
 import sys
 from gpiozero import OutputDevice
 from time import sleep
-from pin_patterns import PatternAlgorithm
+from pin_patterns_xmas import PatternAlgorithm
 
 pins = [
     OutputDevice(pin=21, active_high=False),
@@ -29,10 +29,10 @@ if len(sys.argv) > 1:
     elif "test" == sys.argv[1].lower():
         for p in pins:
             p.value = True
-            sleep(2)
+            sleep(1)
         for p in pins:
             p.value = False
-            sleep(2)
+            sleep(0.5)
         exit()
 # ------------------------------------
 
@@ -40,7 +40,9 @@ pattern_algorithm = PatternAlgorithm(18)
 
 cur_state = PatternAlgorithm.inverse_initial_state()
 
-sleep_time = 0.085  # in seconds
+# in seconds
+#sleep_time = 0.085  # for thorana
+sleep_time = 0.2  #  for christmas lights
 
 while True:
     new_state = pattern_algorithm.next()
