@@ -20,15 +20,15 @@ class PatternAlgorithm:
         # Organize patterns
         # -----------------------------------------------------------
         self.patterns.append(PinPattern8(PatternAlgorithm.INITIAL_STATE_PATTERN, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 10))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON, 10))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 20))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON, 20))
         self.patterns.append(PinPattern8(PatternAlgorithm.ON_OFF, 1))
-        self.patterns.append(PinPattern8(PatternAlgorithm.KR, 5))
-        self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, 6))
-        self.patterns.append(PinPattern8(PatternAlgorithm.FLIP_FLOP, 2))
-        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 6))
-        self.patterns.append(PinPattern8(PatternAlgorithm.LASER_X, 4))
-        self.patterns.append(PinPattern8(PatternAlgorithm.LASER, 3))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR, 6))
+        self.patterns.append(PinPattern8(PatternAlgorithm.KR_KR, 8))
+        self.patterns.append(PinPattern8(PatternAlgorithm.FLIP_FLOP, 6))
+        self.patterns.append(PinPattern8(PatternAlgorithm.ON_NOLASER, 20))
+        self.patterns.append(PinPattern8(PatternAlgorithm.LASER_X, 16))
+        self.patterns.append(PinPattern8(PatternAlgorithm.LASER, 14))
         # -----------------------------------------------------------
 
     def _next_pattern_int(self):
